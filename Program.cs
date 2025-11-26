@@ -5,7 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+
+
 builder.Services.AddScoped<ComissaoService>();
+builder.Services.AddSingleton<EstoqueService>();
 
 var app = builder.Build();
 

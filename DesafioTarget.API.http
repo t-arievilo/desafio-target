@@ -1,4 +1,4 @@
-
+### ===== DESAFIO 01 - COMISSÕES =====
 POST http://localhost:5297/api/comissoes/calcular
 Content-Type: application/json
 
@@ -9,4 +9,30 @@ Content-Type: application/json
     { "vendedor": "Maria Souza", "valor": 800.00 },
     { "vendedor": "Maria Souza", "valor": 75.00 }
   ]
+}
+
+### ===== DESAFIO 02 - ESTOQUE =====
+### Teste Estoque - Obter produtos
+GET http://localhost:5297/api/estoque/produtos
+
+### Teste Estoque - Entrada
+POST http://localhost:5297/api/estoque/movimentar
+Content-Type: application/json
+
+{
+  "codigoProduto": 101,
+  "descricao": "Compra de canetas",
+  "quantidade": 50,
+  "tipoMovimentacao": "ENTRADA"
+}
+
+### Teste Estoque - Saída
+POST http://localhost:5297/api/estoque/movimentar
+Content-Type: application/json
+
+{
+  "codigoProduto": 101,
+  "descricao": "Venda para cliente",
+  "quantidade": 50,
+  "tipoMovimentacao": "SAIDA"
 }

@@ -10,9 +10,9 @@ namespace DesafioTarget.API.Controllers
     {
         private readonly ComissaoService _comissaoService;
 
-        public ComissoesController()
+        public ComissoesController(ComissaoService comissaoService)
         {
-            _comissaoService = new ComissaoService();
+            _comissaoService = comissaoService;
         }
 
         [HttpPost("calcular")]
