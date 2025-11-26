@@ -1,25 +1,29 @@
 import { Component } from '@angular/core';
-import { JurosService, CalculoJurosRequest, CalculoJurosResponse } from '../../services/juros.service';
+import {
+  JurosService,
+  CalculoJurosRequest,
+  CalculoJurosResponse,
+} from '../../services/juros.service';
 
 @Component({
   selector: 'app-juros',
   templateUrl: './juros.component.html',
-  styleUrls: ['./juros.component.css']
+  styleUrls: ['./juros.component.css'],
 })
 export class JurosComponent {
   calculo: CalculoJurosRequest = {
     valorOriginal: 0,
-    dataVencimento: this.formatarData(new Date())
+    dataVencimento: this.formatarData(new Date()),
   };
-  
+
   resultado: CalculoJurosResponse | null = null;
   carregando = false;
 
   constructor(private jurosService: JurosService) {}
 
   formatarDataExibicao(dataString: string): string {
-  const data = new Date(dataString);
-  return data.toLocaleDateString('pt-BR');
+    const data = new Date(dataString);
+    return data.toLocaleDateString('pt-BR');
   }
 
   calcularJuros() {
@@ -35,7 +39,7 @@ export class JurosComponent {
         console.error('Erro ao calcular juros:', erro);
         this.carregando = false;
         alert('Erro ao calcular juros. Verifique os dados informados.');
-      }
+      },
     });
   }
 
@@ -44,7 +48,7 @@ export class JurosComponent {
       alert('O valor original deve ser maior que zero');
       return false;
     }
-    
+
     const dataVencimento = new Date(this.calculo.dataVencimento);
     if (isNaN(dataVencimento.getTime())) {
       alert('Data de vencimento inválida');
@@ -61,14 +65,14 @@ export class JurosComponent {
   limparCalculo() {
     this.calculo = {
       valorOriginal: 0,
-      dataVencimento: this.formatarData(new Date())
+      dataVencimento: this.formatarData(new Date()),
     };
     this.resultado = null;
   }
 
   getStatusAtraso(): string {
     if (!this.resultado) return '';
-    
+
     if (this.resultado.diasAtraso === 0) {
       return 'sem-atraso';
     } else if (this.resultado.diasAtraso <= 30) {
@@ -76,5 +80,10 @@ export class JurosComponent {
     } else {
       return 'atraso-grave';
     }
+  }
+
+  atualizarValorOriginal(event: any) {
+    const valor = event.target.value;
+    this.calculo.valorOriginal = valor === '' ? 0 : parseFloat(valor);
   }
 }

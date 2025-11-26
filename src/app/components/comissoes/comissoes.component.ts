@@ -53,4 +53,9 @@ export class ComissoesComponent {
   calcularTotalVendedor(vendedor: VendedorComissao): number {
     return vendedor.vendasComComissao.reduce((total, venda) => total + venda.comissao, 0);
   }
+
+  atualizarValorVenda(event: any) {
+  const valor = event.target.value;
+  this.novaVenda.valor = valor === '' ? 0 : parseFloat(valor);
+}
 }

@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { EstoqueService, Produto, MovimentacaoRequest, MovimentacaoResponse } from '../../services/estoque.service';
+import {
+  EstoqueService,
+  Produto,
+  MovimentacaoRequest,
+  MovimentacaoResponse,
+} from '../../services/estoque.service';
 
 @Component({
   selector: 'app-estoque',
   templateUrl: './estoque.component.html',
-  styleUrls: ['./estoque.component.css']
+  styleUrls: ['./estoque.component.css'],
 })
 export class EstoqueComponent implements OnInit {
   produtos: Produto[] = [];
@@ -12,9 +17,9 @@ export class EstoqueComponent implements OnInit {
     codigoProduto: 0,
     descricao: '',
     quantidade: 0,
-    tipoMovimentacao: 'ENTRADA'
+    tipoMovimentacao: 'ENTRADA',
   };
-  
+
   carregando = false;
   ultimaMovimentacao: MovimentacaoResponse | null = null;
 
@@ -30,7 +35,7 @@ export class EstoqueComponent implements OnInit {
       next: (produtos) => {
         this.produtos = produtos;
         this.carregando = false;
-        
+
         if (produtos.length > 0 && this.movimentacao.codigoProduto === 0) {
           this.movimentacao.codigoProduto = produtos[0].codigoProduto;
         }
@@ -39,7 +44,7 @@ export class EstoqueComponent implements OnInit {
         console.error('Erro ao carregar produtos:', erro);
         this.carregando = false;
         alert('Erro ao carregar produtos do estoque');
-      }
+      },
     });
   }
 
@@ -60,8 +65,10 @@ export class EstoqueComponent implements OnInit {
       error: (erro) => {
         console.error('Erro ao registrar movimentação:', erro);
         this.carregando = false;
-        alert('Erro ao registrar movimentação. Verifique o estoque disponível.');
-      }
+        alert(
+          'Erro ao registrar movimentação. Verifique o estoque disponível.'
+        );
+      },
     });
   }
 
@@ -82,6 +89,13 @@ export class EstoqueComponent implements OnInit {
   }
 
   getProdutoSelecionado(): Produto | undefined {
-    return this.produtos.find(p => p.codigoProduto === this.movimentacao.codigoProduto);
+    return this.produtos.find(
+      (p) => p.codigoProduto === this.movimentacao.codigoProduto
+    );
+  }
+
+  atualizarQuantidade(event: any) {
+    const valor = event.target.value;
+    this.movimentacao.quantidade = valor === '' ? 0 : parseInt(valor);
   }
 }

@@ -3,7 +3,7 @@
     <h2>📦 Controle de Estoque</h2>
     <p>Gerencie entradas e saídas de produtos</p>
   </div>
-  
+
   <div class="card-body">
     <!-- Lista de Produtos em Estoque -->
     <div class="estoque-section">
@@ -11,10 +11,15 @@
       <div *ngIf="carregando && produtos.length === 0" class="loading">
         🔄 Carregando produtos...
       </div>
-      
+
       <div *ngIf="produtos.length > 0" class="produtos-grid">
-        <div *ngFor="let produto of produtos" class="produto-card" 
-             [class.selected]="produto.codigoProduto === movimentacao.codigoProduto">
+        <div
+          *ngFor="let produto of produtos"
+          class="produto-card"
+          [class.selected]="
+            produto.codigoProduto === movimentacao.codigoProduto
+          "
+        >
           <div class="produto-info">
             <strong>{{ produto.descricaoProduto }}</strong>
             <span class="codigo">Cód: {{ produto.codigoProduto }}</span>
@@ -35,7 +40,10 @@
         <div class="form-group">
           <label>Produto:</label>
           <select [(ngModel)]="movimentacao.codigoProduto" class="form-select">
-            <option *ngFor="let produto of produtos" [value]="produto.codigoProduto">
+            <option
+              *ngFor="let produto of produtos"
+              [value]="produto.codigoProduto"
+            >
               {{ produto.descricaoProduto }} (Estoque: {{ produto.estoque }})
             </option>
           </select>
@@ -43,35 +51,38 @@
 
         <div class="form-group">
           <label>Descrição:</label>
-          <input 
-            type="text" 
-            [(ngModel)]="movimentacao.descricao" 
-            placeholder="Ex: Compra de fornecedor, Venda para cliente..."
+          <input
+            type="number"
+            [value]="
+              movimentacao.quantidade === 0 ? '' : movimentacao.quantidade
+            "
+            (input)="atualizarQuantidade($event)"
+            min="1"
             class="form-input"
-          >
+          />
         </div>
 
         <div class="form-group">
           <label>Quantidade:</label>
-          <input 
-            type="number" 
-            [(ngModel)]="movimentacao.quantidade" 
+          <input
+            type="number"
+            [(ngModel)]="movimentacao.quantidade"
             min="1"
             class="form-input"
-          >
+          />
         </div>
 
         <div class="form-group">
           <label>Tipo:</label>
           <div class="tipo-buttons">
-            <button 
+            <button
               (click)="movimentacao.tipoMovimentacao = 'ENTRADA'"
               [class.active]="movimentacao.tipoMovimentacao === 'ENTRADA'"
               class="btn-entrada"
             >
               ➕ Entrada
             </button>
-            <button 
+            <button
               (click)="movimentacao.tipoMovimentacao = 'SAIDA'"
               [class.active]="movimentacao.tipoMovimentacao === 'SAIDA'"
               class="btn-saida"
@@ -81,12 +92,12 @@
           </div>
         </div>
 
-        <button 
-          (click)="registrarMovimentacao()" 
+        <button
+          (click)="registrarMovimentacao()"
           [disabled]="carregando"
           class="btn-registrar"
         >
-          {{ carregando ? '🔄 Processando...' : '💾 Registrar Movimentação' }}
+          {{ carregando ? "🔄 Processando..." : "💾 Registrar Movimentação" }}
         </button>
       </div>
     </div>
@@ -95,11 +106,26 @@
     <div *ngIf="ultimaMovimentacao" class="resultado-movimentacao">
       <h3>✅ Movimentação Registrada</h3>
       <div class="movimentacao-info">
-        <p><strong>Produto:</strong> {{ getProdutoSelecionado()?.descricaoProduto }}</p>
-        <p><strong>Descrição:</strong> {{ ultimaMovimentacao.movimentacao.descricao }}</p>
-        <p><strong>Quantidade:</strong> {{ ultimaMovimentacao.movimentacao.quantidade }}</p>
-        <p><strong>Tipo:</strong> {{ ultimaMovimentacao.movimentacao.tipoMovimentacao }}</p>
-        <p><strong>Estoque Atual:</strong> {{ ultimaMovimentacao.estoqueAtual }} unidades</p>
+        <p>
+          <strong>Produto:</strong>
+          {{ getProdutoSelecionado()?.descricaoProduto }}
+        </p>
+        <p>
+          <strong>Descrição:</strong>
+          {{ ultimaMovimentacao.movimentacao.descricao }}
+        </p>
+        <p>
+          <strong>Quantidade:</strong>
+          {{ ultimaMovimentacao.movimentacao.quantidade }}
+        </p>
+        <p>
+          <strong>Tipo:</strong>
+          {{ ultimaMovimentacao.movimentacao.tipoMovimentacao }}
+        </p>
+        <p>
+          <strong>Estoque Atual:</strong>
+          {{ ultimaMovimentacao.estoqueAtual }} unidades
+        </p>
       </div>
     </div>
   </div>
