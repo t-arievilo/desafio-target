@@ -9,6 +9,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<ComissaoService>();
 builder.Services.AddSingleton<EstoqueService>();
+builder.Services.AddScoped<JurosService>();
 
 var app = builder.Build();
 

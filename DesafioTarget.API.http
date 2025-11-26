@@ -36,3 +36,22 @@ Content-Type: application/json
   "quantidade": 50,
   "tipoMovimentacao": "SAIDA"
 }
+
+### ===== DESAFIO 03 - RELATÓRIO DE VENDAS =====
+### ===== JUROS =====
+POST http://localhost:5297/api/juros/calcular
+Content-Type: application/json
+
+{
+  "valorOriginal": 1000.00,
+  "dataVencimento": "2025-11-20"
+}
+
+### ===== DATA FUTURA =====
+POST http://localhost:5297/api/juros/calcular
+Content-Type: application/json
+
+{
+  "valorOriginal": 1000.00,
+  "dataVencimento": "2025-12-25"
+}
