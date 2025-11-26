@@ -1,0 +1,102 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  background: #f8f9fa;
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.btn-calcular {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-calcular:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.btn-calcular:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.resultados {
+  margin-top: 20px;
+}
+
+.vendedor-card {
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: #f8f9fa;
+}
+
+.vendedor-header {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #495057;
+}
+
+.vendas-list {
+  margin-left: 16px;
+}
+
+.venda-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.venda-item:last-child {
+  border-bottom: none;
+}
+
+.valor {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.comissao {
+  color: #17a2b8;
+}
+
+.percentual {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.vendedor-total {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 2px solid #007bff;
+  text-align: right;
+  color: #007bff;
+}
+
+.sem-dados {
+  text-align: center;
+  color: #6c757d;
+  margin-top: 20px;
+}

@@ -1,0 +1,76 @@
+<div class="card">
+  <div class="card-header">
+    <h2>💰 Sistema de Comissões</h2>
+    <p>Adicione vendas e calcule comissões automaticamente</p>
+  </div>
+  
+  <div class="card-body">
+    <div class="form-container">
+      <h3>Adicionar Venda</h3>
+      <div class="form-group">
+        <input 
+          type="text" 
+          [(ngModel)]="novaVenda.vendedor" 
+          placeholder="Nome do vendedor"
+          class="form-input"
+        >
+        <input 
+          type="number" 
+          [(ngModel)]="novaVenda.valor" 
+          placeholder="Valor da venda"
+          min="0"
+          step="0.01"
+          class="form-input"
+        >
+        <button (click)="adicionarVenda()" class="btn-adicionar">
+          ➕ Adicionar
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="vendas.length > 0" class="vendas-adicionadas">
+      <h3>Vendas Adicionadas ({{ vendas.length }})</h3>
+      <div class="vendas-list">
+        <div *ngFor="let venda of vendas; let i = index" class="venda-item">
+          <span class="venda-info">
+            <strong>{{ venda.vendedor }}</strong> - R$ {{ venda.valor.toFixed(2) }}
+          </span>
+          <button (click)="removerVenda(i)" class="btn-remover">🗑️</button>
+        </div>
+      </div>
+
+      <div class="acoes">
+        <button (click)="calcularComissoes()" [disabled]="carregando" class="btn-calcular">
+          {{ carregando ? '🔄 Calculando...' : '🧮 Calcular Comissões' }}
+        </button>
+        <button (click)="limparDados()" class="btn-limpar">🗑️ Limpar Tudo</button>
+      </div>
+    </div>
+
+    <div *ngIf="resultado.length > 0" class="resultados">
+      <h3>📊 Resultados das Comissões</h3>
+      
+      <div *ngFor="let vendedor of resultado" class="vendedor-card">
+        <div class="vendedor-header">
+          <strong>{{ vendedor.vendedor }}</strong>
+        </div>
+        
+        <div class="vendas-list">
+          <div *ngFor="let venda of vendedor.vendasComComissao" class="venda-resultado">
+            <span class="valor">R$ {{ venda.valorVenda.toFixed(2) }}</span>
+            <span class="comissao">Comissão: R$ {{ venda.comissao.toFixed(2) }}</span>
+            <span class="percentual">({{ venda.percentualComissao }}%)</span>
+          </div>
+        </div>
+
+        <div class="vendedor-total">
+          <strong>Total Comissões: R$ {{ calcularTotalVendedor(vendedor).toFixed(2) }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="vendas.length === 0 && !carregando" class="sem-dados">
+      <p>➕ Adicione vendas usando o formulário acima</p>
+    </div>
+  </div>
+</div>
