@@ -1,0 +1,210 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  background: #f8f9fa;
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.card-header p {
+  margin: 4px 0 0 0;
+  color: #666;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.estoque-section {
+  margin-bottom: 24px;
+}
+
+.estoque-section h3 {
+  color: #495057;
+  margin-bottom: 12px;
+}
+
+.loading {
+  text-align: center;
+  color: #6c757d;
+  padding: 20px;
+}
+
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.produto-card {
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 12px;
+  background: white;
+  transition: all 0.2s;
+}
+
+.produto-card:hover {
+  border-color: #007bff;
+  box-shadow: 0 2px 4px rgba(0,123,255,0.1);
+}
+
+.produto-card.selected {
+  border-color: #007bff;
+  background: #f8f9fa;
+}
+
+.produto-info {
+  margin-bottom: 8px;
+}
+
+.produto-info strong {
+  display: block;
+  color: #495057;
+}
+
+.codigo {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.estoque-info {
+  text-align: right;
+}
+
+.quantidade {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.quantidade.baixo {
+  color: #dc3545;
+}
+
+.movimentacao-section {
+  border-top: 2px solid #e9ecef;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+.movimentacao-section h3 {
+  color: #495057;
+  margin-bottom: 16px;
+}
+
+.form-movimentacao {
+  max-width: 500px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+  color: #495057;
+}
+
+.form-select, .form-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-select:focus, .form-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.tipo-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-entrada, .btn-saida {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-entrada.active {
+  background: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.btn-saida.active {
+  background: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+.btn-entrada:hover:not(.active) {
+  background: #e8f5e8;
+}
+
+.btn-saida:hover:not(.active) {
+  background: #fde8e8;
+}
+
+.btn-registrar {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+.btn-registrar:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.btn-registrar:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.resultado-movimentacao {
+  border-top: 2px solid #28a745;
+  padding-top: 20px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.resultado-movimentacao h3 {
+  color: #155724;
+  margin-bottom: 12px;
+}
+
+.movimentacao-info p {
+  margin: 8px 0;
+  color: #495057;
+}
+
+.movimentacao-info strong {
+  color: #155724;
+}
