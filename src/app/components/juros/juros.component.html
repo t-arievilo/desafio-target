@@ -1,1 +1,118 @@
-<p>juros works!</p>
+<div class="card">
+  <div class="card-header">
+    <h2>⏰ Calculadora de Juros</h2>
+    <p>Calcule multas de 2,5% ao dia em pagamentos em atraso</p>
+  </div>
+  
+  <div class="card-body">
+    <!-- Formulário de Cálculo -->
+    <div class="calculo-section">
+      <h3>📝 Dados para Cálculo</h3>
+      <div class="form-calculo">
+        <div class="form-group">
+          <label>Valor Original (R$):</label>
+          <input 
+            type="number" 
+            [(ngModel)]="calculo.valorOriginal" 
+            min="0.01"
+            step="0.01"
+            placeholder="0,00"
+            class="form-input"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Data de Vencimento:</label>
+          <input 
+            type="date" 
+            [(ngModel)]="calculo.dataVencimento" 
+            class="form-input"
+          >
+        </div>
+
+        <div class="acoes">
+          <button 
+            (click)="calcularJuros()" 
+            [disabled]="carregando"
+            class="btn-calcular"
+          >
+            {{ carregando ? '🔄 Calculando...' : '🧮 Calcular Juros' }}
+          </button>
+          <button 
+            (click)="limparCalculo()" 
+            class="btn-limpar"
+          >
+            🗑️ Limpar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resultado do Cálculo -->
+    <div *ngIf="resultado" class="resultado-section" [class]="getStatusAtraso()">
+      <h3>📊 Resultado do Cálculo</h3>
+      
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">Valor Original:</span>
+          <span class="valor">R$ {{ resultado.valorOriginal.toFixed(2) }}</span>
+        </div>
+        
+        <div class="info-item">
+          <span class="label">Data de Vencimento:</span>
+          <span class="valor">{{ formatarDataExibicao(resultado.dataVencimento) }}</span>
+        </div>
+        
+        <div class="info-item">
+          <span class="label">Data de Cálculo:</span>
+          <span class="valor">{{ formatarDataExibicao(resultado.dataAtual) }}</span>
+        </div>
+        
+        <div class="info-item" *ngIf="resultado.diasAtraso > 0">
+          <span class="label">Dias em Atraso:</span>
+          <span class="valor atraso">{{ resultado.diasAtraso }} dias</span>
+        </div>
+        
+        <div class="info-item" *ngIf="resultado.diasAtraso === 0">
+          <span class="label">Situação:</span>
+          <span class="valor em-dia">✅ Em dia</span>
+        </div>
+        
+        <div class="info-item" *ngIf="resultado.diasAtraso > 0">
+          <span class="label">Multa por Dia:</span>
+          <span class="valor">{{ resultado.multaPorDia }}%</span>
+        </div>
+        
+        <div class="info-item" *ngIf="resultado.diasAtraso > 0">
+          <span class="label">Valor dos Juros:</span>
+          <span class="valor juros">R$ {{ resultado.valorJuros.toFixed(2) }}</span>
+        </div>
+      </div>
+
+      <div class="total-section">
+        <div class="total-item">
+          <span class="label-total">Valor Total a Pagar:</span>
+          <span class="valor-total">R$ {{ resultado.valorTotal.toFixed(2) }}</span>
+        </div>
+        
+        <div *ngIf="resultado.diasAtraso > 0" class="resumo-juros">
+          <small>
+            💡 Acréscimo de R$ {{ resultado.valorJuros.toFixed(2) }} 
+            ({{ resultado.diasAtraso }} dias × {{ resultado.multaPorDia }}% ao dia)
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instruções -->
+    <div *ngIf="!resultado" class="instrucoes">
+      <h3>ℹ️ Como Funciona</h3>
+      <ul>
+        <li>Multa de <strong>2,5% ao dia</strong> sobre o valor original</li>
+        <li>Cálculo baseado na data atual do sistema</li>
+        <li>Juros aplicados apenas em caso de atraso</li>
+        <li>Sem multas para pagamentos em dia ou antecipados</li>
+      </ul>
+    </div>
+  </div>
+</div>
