@@ -1,0 +1,12 @@
+
+POST http://localhost:5297/api/comissoes/calcular
+Content-Type: application/json
+
+{
+  "vendas": [
+    { "vendedor": "João Silva", "valor": 1200.50 },
+    { "vendedor": "João Silva", "valor": 250.30 },
+    { "vendedor": "Maria Souza", "valor": 800.00 },
+    { "vendedor": "Maria Souza", "valor": 75.00 }
+  ]
+}
