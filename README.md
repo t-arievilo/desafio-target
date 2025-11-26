@@ -20,7 +20,7 @@ Sistema fullstack completo desenvolvido para o desafio técnico, contendo **3 fu
 - **.NET 9.0**  
 - **ASP.NET Core Web API**  
 - **C# 12.0**  
-- **Swagger/OpenAPI** para documentação  
+- **OpenAPI** para documentação  
 
 ### 🎨 Frontend
 - **Angular 16**  
@@ -72,8 +72,8 @@ Endpoint	Método	Descrição
 /api/estoque/movimentar	POST	Movimenta estoque
 /api/juros/calcular	POST	Cálculo de juros
 
-4. Acessar Swagger:
-http://localhost:5297/swagger
+4. Acessar OpenAPI:
+http://localhost:5297/
 
 🎨 Opção 2: Backend + Frontend (Sistema Completo)
 1. Executar o Backend:
