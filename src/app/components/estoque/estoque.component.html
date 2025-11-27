@@ -52,13 +52,11 @@
         <div class="form-group">
           <label>Descrição:</label>
           <input
-            type="number"
-            [value]="
-              movimentacao.quantidade === 0 ? '' : movimentacao.quantidade
-            "
-            (input)="atualizarQuantidade($event)"
-            min="1"
+            type="text"
+            [(ngModel)]="movimentacao.descricao"
+            placeholder="Ex: Compra de fornecedor, Venda para cliente..."
             class="form-input"
+            name="descricaoMovimentacao"
           />
         </div>
 
@@ -66,9 +64,14 @@
           <label>Quantidade:</label>
           <input
             type="number"
-            [(ngModel)]="movimentacao.quantidade"
+            [value]="
+              movimentacao.quantidade === 0 ? '' : movimentacao.quantidade
+            "
+            (input)="atualizarQuantidade($event)"
             min="1"
             class="form-input"
+            name="quantidadeMovimentacao"
+            placeholder="0"
           />
         </div>
 
